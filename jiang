@@ -1,0 +1,82 @@
+#include<stdio.h>
+#include<windows.h>
+#include<conio.h>
+#include<string.h>
+char a[11][15]={
+"**###****##*#*",
+"#*****##**##*#",
+"*#####*****###",
+"###***####***#",
+"***##***###***",
+"**#####***###*",
+"*##****###****",
+"**######***###",
+"####*****##**E",
+"###***#####*##",
+"####*********#",
+};
+int L=14,K=11,D,i;
+int x,y;
+void print_person()//显示人光标 
+{
+	COORD pos;
+	pos.X=x;
+	pos.Y=y;
+	printf("curX=%d,curY=%d",x,y);
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);//设置控制台光标位置 
+ } 
+ void print_map()//显示迷宫 
+ {
+ 	for(i=0;i<K;i++)
+ 	{
+ 		puts(a[i]);
+	 }
+ }
+ void print_move(char b)//控制人前进 
+ {
+ 	switch(b)
+ 	{
+ 		case 'W':y--;
+ 		        if(y<0)
+ 		        y=0;
+ 		        if(a[y][x]=='#')
+ 		        y++;
+ 		        break;
+ 		case 'S':y++;
+ 		        if(y>=K)
+ 		        y=K-1;
+ 		        if(a[y][x]=='#')
+ 		        y--;
+ 		        break;
+ 		case 'A':x--;
+ 		        if(x<0)
+ 		        x=0;
+ 		        if(a[y][x]=='#')
+ 		        x++;
+ 		        break;
+ 		case 'D':x++;
+ 		        if(x>=L)
+ 		        x=L-1;
+ 		        if(a[y][x]=='#')
+ 		        x--;
+ 		        break;
+	 }
+ }
+ int main()
+ {
+ 	char t;
+ 	while(1)
+ 	{
+ 		system("cls");
+ 		print_map();
+ 		print_person();
+ 		t=getch();
+ 		print_move(t);
+ 		if(a[y][x]=='E')
+ 		{
+ 			printf("游戏结束,恭喜你成功通关！\n");
+ 			break;
+		 }
+	 }
+	 return 0;
+ }
