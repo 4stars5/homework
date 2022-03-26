@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+	int a[1000][100],b[1000],c[1000];//a是准考号，b为试机号，c为考试座位号
+	int m=0,n=0,q[1000];//m为考生总人数，n为迟到的学生人数  ，q为存放需查询考生的试机号
+	int i,j;
+	
+	printf("Enter the total number of candidates:\n");
+	scanf("%d",&m);
+	
+	for(i=0;i<m;i++)
+	{
+		printf("Enter the ticket number,test machine number and seat number of %d candidates:\n",i+1);
+		scanf("%s %d %d",&a[i],&b[i],&c[i]);
+	 } 
+	
+	printf("Enter the number of students who are late:\n");
+	scanf("%d",&n);
+	for(j=0;j<n;j++)
+	{
+		printf("Enter the test number of the late student  %d:\n",j+1);
+		scanf("%d",&q[j]);
+	}
+	i=0;
+	while(i<n)
+	{
+		j=0;
+		while(j<m)
+		{
+			if(q[i]==b[j])
+			{
+				printf("%s %d",a[j],c[j]);
+			}
+			    j++;
+		}
+		i++;
+	}
+	return 0;
+ } 
